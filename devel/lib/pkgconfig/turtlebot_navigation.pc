@@ -1,0 +1,8 @@
+prefix=/home/sebasgm/navigation/src/nav_test/turtlebot_navigation/devel
+
+Name: turtlebot_navigation
+Description: Description of turtlebot_navigation
+Version: 2.2.3
+Cflags: 
+Libs: -L/home/sebasgm/navigation/src/nav_test/turtlebot_navigation/devel/lib 
+Requires: tf roscpp sensor_msgs

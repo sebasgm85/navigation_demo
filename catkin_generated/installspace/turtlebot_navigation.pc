@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: turtlebot_navigation
+Description: Description of turtlebot_navigation
+Version: 2.2.3
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: tf roscpp sensor_msgs

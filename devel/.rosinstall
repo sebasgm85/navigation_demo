@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/sebasgm/navigation/src/nav_test/turtlebot_navigation/devel/setup.sh
