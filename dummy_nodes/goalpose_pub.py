@@ -7,25 +7,23 @@ from geometry_msgs.msg import PoseWithCovarianceStamped, Point, Quaternion, Pose
 from move_base_msgs.msg import MoveBaseGoal
 
 def set_goalpose():
-    pub_goalpose = rospy.Publisher('/move_base_simple/goal', PoseStamped)
-
-    location =  Pose(Point(10.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.1, 0.0))
+    
+    location =  Pose(Point(15.0, 15.0, 0.0), Quaternion(0.0, 0.0, 0.372749678514, 0.927931935633))
     goal = PoseStamped()
     goal.pose = location
-    goal.header.stamp = rospy.Time.now()
-    goal.header.frame_id = 'map'
+    goal.header.frame_id = '/map'
     goal.header.stamp = rospy.Time.now()
 
-    return pub_goalpose, goal
+    return goal
 
 
 if __name__ == '__main__':
     rospy.init_node('goalpose_pub')
-    time.sleep(2)
-    pub_goalpose, goal = set_goalpose()
+    pub_goalpose = rospy.Publisher('/move_base_simple/goal', PoseStamped)
+    time.sleep(3)
 
     try:
-        goal.pose.position.x += 5
+        goal = set_goalpose()
         pub_goalpose.publish(goal)
     except rospy.ROSInterruptException:
         pass

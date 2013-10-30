@@ -17,14 +17,14 @@ def set_initial_pose():
     else:
         cov_factor = 1.0
 
-    initial_pose_param["x"] = 0.0
-    initial_pose_param["y"] = 0.0
+    initial_pose_param["x"] = 5.0
+    initial_pose_param["y"] = 5.0
     initial_pose_param["z"] = 0.0
 
     initial_orientation_param["x"] = 0.0
     initial_orientation_param["y"] = 0.0
-    initial_orientation_param["z"] = 0.1
-    initial_orientation_param["w"] = 0.0
+    initial_orientation_param["z"] = 0.372749678514
+    initial_orientation_param["w"] = 0.927931935633
 
     if type(initial_pose_param["x"])==float and type(initial_pose_param["y"])==float and type(initial_pose_param["z"])==float and type(initial_orientation_param["x"])==float and type(initial_orientation_param["y"])==float and type(initial_orientation_param["z"])==float and type(initial_orientation_param["w"])==float:
         valid_pose = True
@@ -39,8 +39,8 @@ def set_initial_pose():
         initial_pose.header.frame_id = "/map"
         initial_pose.pose.pose.position = Point(initial_pose_param["x"], initial_pose_param["y"], initial_pose_param["z"])
         initial_pose.pose.pose.orientation = Quaternion(initial_orientation_param["x"], initial_orientation_param["y"], initial_orientation_param["z"], initial_orientation_param["w"])
-        initial_pose.pose.covariance = [0.30, 0.06, 0.0, 0.0, 0.0, 0.0,
-                                        0.06, 0.32, 0.0, 0.0, 0.0, 0.0,
+        initial_pose.pose.covariance = [0.25, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.06, 0.25, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -58,10 +58,11 @@ def set_initial_pose():
 
 if __name__ == '__main__':
     rospy.init_node('initialpose_pub')
-    time.sleep(3) 
+    time.sleep(5) 
     try:
         pub_initialpose, initialpose = set_initial_pose()
         pub_initialpose.publish(initialpose)
 
     except rospy.ROSInterruptException:
         pass
+

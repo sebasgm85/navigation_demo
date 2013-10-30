@@ -16,7 +16,7 @@ if __name__ == "__main__":
     
     occ_grid.header.stamp.secs = 1381944789
     occ_grid.header.stamp.secs = 447167907
-    occ_grid.header.frame_id = "map"
+    occ_grid.header.frame_id = "/map"
     occ_grid.info.resolution = 0.05
     occ_grid.info.width = 512
     occ_grid.info.height = 480

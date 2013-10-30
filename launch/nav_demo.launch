@@ -1,22 +1,17 @@
 <launch>
 
-  <!-- Map server -->
-  <arg name="map_file" default="$(find turtlebot_navigation)/maps/empty_map.yaml"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+ <!-- Map server -->
+ <arg name="map_file" default="$(find navigation_demo)/maps/empty_map.yaml"/>
+ <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> -->
+ <node name="map_server_dumy" pkg="navigation_demo" type="map_server_dummy.py" args="$(arg map_file)" />
 
-  <!-- <arg name="initial_pose_x" default="0.0"/>
-  <arg name="initial_pose_y" default="0.0"/>
-  <arg name="initial_pose_a" default="0.0"/>
-  <include file="$(find turtlebot_navigation)/launch/includes/amcl.launch.xml">
-    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
-    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
-    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
-  </include> -->
+ <node name="amcl_dummy" pkg="navigation_demo" type="amcl_dummy.py" />
 
-  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
- <!--  <include file="/home/sebasgm/navigation/src/nav_test/move_base/launch/move_base_0.3_to_0.2.launch"/> -->
+ <!-- It is important to determine if use this mode require change some configurations -->
+ <!-- <include file="/home/sebasgm/navigation/src/nav_test/move_base/launch/move_base_0.3_to_0.2.launch"/> -->
+ <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
 
- <!-- <node name="initialpose_pub" pkg="turtlebot_navigation" type="initialpose_pub.py" /> -->
+ <!-- This is just for testing. Goal poses must be sent at anytime -->
  <!-- <node name="goalpose_pub" pkg="turtlebot_navigation" type="goalpose_pub.py" /> -->
 
 </launch>
