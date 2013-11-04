@@ -11,7 +11,7 @@ if __name__ == "__main__":
     pub_mapserver = rospy.Publisher('map', OccupancyGrid)
     pub_mapserver_metadata = rospy.Publisher('map_metadata', MapMetaData)
     rospy.init_node('map_server_dummy')
-    rate = rospy.Rate(3) # 3Hz
+    rate = rospy.Rate(5) # 5Hz
     occ_grid = OccupancyGrid()
     
     occ_grid.header.stamp.secs = 1381944789
@@ -25,8 +25,8 @@ if __name__ == "__main__":
     occ_grid.info.origin.position.z = 0.0
     occ_grid.info.origin.orientation.x = 0.0
     occ_grid.info.origin.orientation.y = 0.0
-    occ_grid.info.origin.orientation.z = 0.0
-    occ_grid.info.origin.orientation.w = 1.0
+    occ_grid.info.origin.orientation.z = 1.0
+    occ_grid.info.origin.orientation.w = 0.0
     occ_grid.data = [0 for i in range(512*480)]
 
     metadata = MapMetaData()
@@ -42,11 +42,12 @@ if __name__ == "__main__":
     metadata.origin.position.z = 0.0
     metadata.origin.orientation.x = 0.0
     metadata.origin.orientation.y = 0.0
-    metadata.origin.orientation.z = 0.0
-    metadata.origin.orientation.w = 1.0
+    metadata.origin.orientation.z = 1.0
+    metadata.origin.orientation.w = 0.0
 	
-    while not rospy.is_shutdown(): 
-        pub_mapserver.publish(occ_grid)
+    pub_mapserver.publish(occ_grid)
+
+    while not rospy.is_shutdown():
         pub_mapserver_metadata.publish(metadata)
         rate.sleep()
 

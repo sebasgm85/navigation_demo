@@ -32,7 +32,6 @@ def set_initial_pose():
         valid_pose = False
         rospy.logwarn("Invalid 'initialpose'")
 
-    
     if valid_pose:
         initial_pose = PoseWithCovarianceStamped()
         initial_pose.header.stamp = rospy.Time.now()
@@ -49,7 +48,6 @@ def set_initial_pose():
         if cov_factor != 1.0:
             initial_pose.pose.covariance = [cov_factor*l for l in initial_pose.pose.covariance]
 
-        #pub_initialpose.publish(initial_pose)
         rospy.sleep(1.0)
         str = "Initial pose successfully set"
         rospy.loginfo(str)
@@ -58,7 +56,7 @@ def set_initial_pose():
 
 if __name__ == '__main__':
     rospy.init_node('initialpose_pub')
-    time.sleep(5) 
+    time.sleep(1)
     try:
         pub_initialpose, initialpose = set_initial_pose()
         pub_initialpose.publish(initialpose)

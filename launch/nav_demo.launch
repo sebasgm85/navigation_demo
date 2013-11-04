@@ -2,17 +2,18 @@
 
  <!-- Map server -->
  <arg name="map_file" default="$(find navigation_demo)/maps/empty_map.yaml"/>
- <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> -->
- <node name="map_server_dumy" pkg="navigation_demo" type="map_server_dummy.py" args="$(arg map_file)" />
+ <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+ <!-- <node name="map_server_dumy" pkg="navigation_demo" type="map_server_dummy.py" > -->
+ 
+ <!-- Publishes initialpose for the robot -->
+ <node name="initialpose_pub" pkg="navigation_demo" type="initialpose_pub.py" />
 
+ <!-- Publishes dummy transform from base_footprint to map frame -->
  <node name="amcl_dummy" pkg="navigation_demo" type="amcl_dummy.py" />
 
  <!-- It is important to determine if use this mode require change some configurations -->
- <!-- <include file="/home/sebasgm/navigation/src/nav_test/move_base/launch/move_base_0.3_to_0.2.launch"/> -->
  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
-
- <!-- This is just for testing. Goal poses must be sent at anytime -->
- <!-- <node name="goalpose_pub" pkg="turtlebot_navigation" type="goalpose_pub.py" /> -->
+ <!-- <include file="/home/sebasgm/navigation/src/nav_test/move_base/launch/move_base_0.3_to_0.2.launch"/> -->
 
 </launch>
 
